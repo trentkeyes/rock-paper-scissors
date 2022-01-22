@@ -1,4 +1,58 @@
-//create function for computerPlay that randomly returns rock paper, or scissors
+const rockButton = document.querySelector("#rock");
+rockButton.addEventListener('click', function (event) {
+    playRound(event.target.id);
+});
+
+const paperButton = document.querySelector("#paper");
+paperButton.addEventListener('click', function (event) {
+    playRound(event.target.id);
+});
+
+const scissorsButton = document.querySelector("#scissors");
+scissorsButton.addEventListener('click', function (event) {
+    playRound(event.target.id);
+});
+
+const scoreboard = document.querySelector("#scoreboard");
+const roundResults = document.querySelector("#roundResults");
+
+let userWinTotal = 0;
+let compWinTotal = 0;
+
+function playRound(choice) {
+    let computerSelection = computerPlay();
+    console.log("The computer chose " + computerSelection);
+    console.log("You chose " + choice);
+    if (computerSelection === choice) {
+        roundResults.textContent = "You both made the same choice! Play again!";
+    } else if (computerSelection === "rock" && choice === "scissors") {
+        roundResults.textContent = "You lose! Rock beats scissors!";
+        compWinTotal++;
+    } else if (computerSelection === "paper" && choice === "scissors") {
+        roundResults.textContent = "You win! Scissors beats paper!";
+        userWinTotal++;
+    } else if (computerSelection === "scissors" && choice === "rock") {
+        roundResults.textContent = "You win! Rock beat scissors!";
+        userWinTotal++;
+    } else if (computerSelection === "rock" && choice === "paper") {
+        roundResults.textContent = "You win! Paper beats rock!";
+        userWinTotal++;
+    } else if (computerSelection === "paper" && choice === "rock") {
+        roundResults.textContent = "You lose! Paper beats rock!";
+        compWinTotal++;
+    } else if (computerSelection === "scissors" && choice === "paper") {
+        roundResults.textContent = "You lose! Scissors beats paper!";
+        compWinTotal++;
+    }
+
+    scoreboard.textContent = `Your score: ${userWinTotal} Computer score: ${compWinTotal}`;
+    if (userWinTotal === 5) {
+        finalResults.textContent = "Congratulations! You beat the computer at Rock, Paper, Scissors!";
+    } else if (compWinTotal === 5) {
+        finalResults.textContent = "Uh-oh, you lost the match. Better luck next time.";
+    }
+}
+
 function computerPlay() {
     function getRandom() {
         return Math.random() * 10;
@@ -12,79 +66,3 @@ function computerPlay() {
         return "scissors";
     }
 }
-
-//write a function called game(). Use the playRound inside this to play a five round game that keeps score and reports winner or loser at the end
-function game() {
-    let userWinTotal = 0;
-    let compWinTotal = 0;
-    for (let i = 0; i < 5; i++) {
-        let winner = playRound();
-        if (winner > 0) {
-            userWinTotal++;
-        } else if (winner < 0) {
-            compWinTotal++;
-        }
-    }
-    if (userWinTotal > compWinTotal) {
-        console.log("Congratulations! You beat the computer at Rock, Paper, Scissors!");
-    } else if (compWinTotal > userWinTotal) {
-        console.log("Uh-oh, you lost the five-round match. Better luck next time.");
-    } else {
-        console.log("It's a tie after five rounds! Refresh and try again!")
-    }
-
-    //write function that plays 1 round or RPS, it should take two parameters, playerSelection, computerSelection
-    function playRound(playerSelection, computerSelection) {
-        computerSelection = computerPlay();
-        //console.log("The computer chose " + computerSelection);
-        //use prompt to get input from the user
-        playerSelection = window.prompt("Type your response to play: Rock, Paper, or Scissors");
-        //playerSelection parameter should be case insensitive
-        let choice = playerSelection.toLowerCase();
-        let userWinOrLose = 0;
-        //function should return a string that declares the winner like "You lose! Paper beats Rock"
-        if (computerSelection === choice) {
-            console.log("You both made the same choice! Play again!");
-        } else if (computerSelection === "rock" && choice === "scissors") {
-            console.log("You lose! Rock beats scissors!");
-            userWinOrLose--;
-        } else if (computerSelection === "paper" && choice === "scissors") {
-            console.log("You win! Scissors beats paper!");
-            userWinOrLose++;
-        } else if (computerSelection === "scissors" && choice === "rock") {
-            console.log("You win! Rock beat scissors!");
-            userWinOrLose++;
-        } else if (computerSelection === "rock" && choice === "paper") {
-            console.log("You win! Paper beats rock!");
-            userWinOrLose++;
-        } else if (computerSelection === "paper" && choice === "rock") {
-            console.log("You lose! Paper beats rock!");
-            userWinOrLose--;
-        } else if (computerSelection === "scissors" && choice === "paper") {
-            console.log("You lose! Scissors beats paper!");
-            userWinOrLose--;
-        }
-        return userWinOrLose;
-    }
-
-}
-
-game();
-
-// function randomCheck() {
-//     let rockCount = 0;
-//     let paperCount = 0;
-//     let scissorCount = 0;
-//     for (let i = 0; i < 10000; i++) {
-//         let result = computerPlay();
-//         if (result === "rock") {
-//             rockCount++;
-//         } else if (result === "paper") {
-//             paperCount++;
-//         } else if (result === "scissors") {
-//             scissorCount++;
-//         }
-//     } console.log("Rocks = " + rockCount);
-//     console.log("Paper = " + paperCount);
-//     console.log("Scissors = " + scissorCount);
-//};
