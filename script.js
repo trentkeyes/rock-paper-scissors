@@ -45,11 +45,13 @@ function playRound(choice) {
         compWinTotal++;
     }
 
-    scoreboard.textContent = `Your score: ${userWinTotal} Computer score: ${compWinTotal}`;
+    scoreboardUser.textContent = `Your Score: ${userWinTotal}`;
+    scoreboardOliver.textContent = `Oliver's Score: ${compWinTotal}`;
+
     if (userWinTotal === 5) {
-        finalResults.textContent = "Congratulations! You beat the computer at Rock, Paper, Scissors!";
+        finalResults.textContent = "Congratulations! You beat Oliver at Rock, Paper, Scissors!";
     } else if (compWinTotal === 5) {
-        finalResults.textContent = "Uh-oh, you lost the match. Better luck next time.";
+        finalResults.textContent = "Uh-oh, Oliver won! Better luck next time.";
     }
 }
 

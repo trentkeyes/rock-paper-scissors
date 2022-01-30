@@ -5,16 +5,33 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rock Paper Scissors</title>
+    <title>Play Rock Paper Scissors against Oliver</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mouse+Memoirs&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
-    <button id="rock">Rock</button>
-    <button id="paper">Paper</button>
-    <button id="scissors">Scissors</button>
-    <div id="scoreboard"></div>
-    <div id="roundResults"></div>
-    <div id="finalResults"></div>
+    <div class="titlePhoto">
+        <h1>Play Rock, Paper, Scissors against Oliver</h1>
+        <div id="scoreboard">
+            <div id="scoreboardUser"></div>
+            <img src="./images/oliverxmas.jpg" alt="Oliver the Dog sitting for a Christmas photo">
+            <div id="scoreboardOliver"></div>
+        </div>
+    </div>
+    <div class="game">
+        <div class="buttons">
+            <button id="rock">Rock</button>
+            <button id="paper">Paper</button>
+            <button id="scissors">Scissors</button>
+        </div>
+
+        <div id="roundResults"></div>
+        <div id="finalResults"></div>
+    </div>
     <script src="script.js"></script>
 </body>
 
