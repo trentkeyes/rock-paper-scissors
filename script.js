@@ -15,6 +15,8 @@ scissorsButton.addEventListener('click', function (event) {
 
 const scoreboard = document.querySelector("#scoreboard");
 const roundResults = document.querySelector("#roundResults");
+const finalResults = document.querySelector("#finalResults");
+
 
 let userWinTotal = 0;
 let compWinTotal = 0;
@@ -23,25 +25,32 @@ function playRound(choice) {
     let computerSelection = computerPlay();
     console.log("The computer chose " + computerSelection);
     console.log("You chose " + choice);
+    roundResults.classList.add("playing");
+    if (compWinTotal > 4 || userWinTotal > 4) {
+        compWinTotal = 0;
+        userWinTotal = 0;
+        finalResults.classList.remove("playing");
+        finalResults.textContent = "";
+    }
     if (computerSelection === choice) {
-        roundResults.textContent = "You both made the same choice! Play again!";
+        roundResults.textContent = "Great minds think alike! Try again!";
     } else if (computerSelection === "rock" && choice === "scissors") {
-        roundResults.textContent = "You lose! Rock beats scissors!";
+        roundResults.textContent = "Oliver scored! Rock beats scissors!";
         compWinTotal++;
     } else if (computerSelection === "paper" && choice === "scissors") {
-        roundResults.textContent = "You win! Scissors beats paper!";
+        roundResults.textContent = "You scored! Scissors beats paper!";
         userWinTotal++;
     } else if (computerSelection === "scissors" && choice === "rock") {
-        roundResults.textContent = "You win! Rock beat scissors!";
+        roundResults.textContent = "You scored! Rock beat scissors!";
         userWinTotal++;
     } else if (computerSelection === "rock" && choice === "paper") {
-        roundResults.textContent = "You win! Paper beats rock!";
+        roundResults.textContent = "You scored! Paper beats rock!";
         userWinTotal++;
     } else if (computerSelection === "paper" && choice === "rock") {
-        roundResults.textContent = "You lose! Paper beats rock!";
+        roundResults.textContent = "Oliver scored! Paper beats rock!";
         compWinTotal++;
     } else if (computerSelection === "scissors" && choice === "paper") {
-        roundResults.textContent = "You lose! Scissors beats paper!";
+        roundResults.textContent = "Oliver scored! Scissors beats paper!";
         compWinTotal++;
     }
 
@@ -49,10 +58,13 @@ function playRound(choice) {
     scoreboardOliver.textContent = `Oliver's Score: ${compWinTotal}`;
 
     if (userWinTotal === 5) {
+        finalResults.classList.add("playing");
         finalResults.textContent = "Congratulations! You beat Oliver at Rock, Paper, Scissors!";
     } else if (compWinTotal === 5) {
-        finalResults.textContent = "Uh-oh, Oliver won! Better luck next time.";
+        finalResults.textContent = "Uh-oh, Oliver won! Make a choice to start a new game.";
+        finalResults.classList.add("playing");
     }
+
 }
 
 function computerPlay() {

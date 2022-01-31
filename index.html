@@ -16,21 +16,21 @@
 <body>
     <div class="titlePhoto">
         <h1>Play Rock, Paper, Scissors against Oliver</h1>
-        <div id="scoreboard">
-            <div id="scoreboardUser"></div>
-            <img src="./images/oliverxmas.jpg" alt="Oliver the Dog sitting for a Christmas photo">
-            <div id="scoreboardOliver"></div>
-        </div>
+        <img src="./images/oliverxmas.jpg" alt="Oliver the Dog sitting for a Christmas photo">
     </div>
-    <div class="game">
+    <div id="game">
         <div class="buttons">
             <button id="rock">Rock</button>
             <button id="paper">Paper</button>
             <button id="scissors">Scissors</button>
         </div>
-
+        <div id="scoreboard">
+            <div id="scoreboardUser">Your Score: 0</div>
+            <div id="scoreboardOliver">Oliver's Score: 0</div>
+        </div>
         <div id="roundResults"></div>
         <div id="finalResults"></div>
+
     </div>
     <script src="script.js"></script>
 </body>
